@@ -43,7 +43,26 @@ app.controller('homeCtrl', function($scope, $rootScope, $sce) {
   $scope.deliberatelyTrustDangerousSnippet = function(snippet) {
 
     return $sce.trustAsHtml(snippet);
+
   };
+
+  $scope.sendToModal = function(index) {
+
+    $rootScope.shotOfContentModal = index;
+
+    $rootScope.reqWithToken('/shots/'+$rootScope.shotOfContentModal.id+'/comments', null, 'GET', function(success) {
+
+      $rootScope.commentsModal = success.data;
+
+      console.log(success);
+
+    }, function(err) {
+
+      console.log(err);
+
+    });
+
+  }
 
   $('ul.nav li.dropdown').hover(function() {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);

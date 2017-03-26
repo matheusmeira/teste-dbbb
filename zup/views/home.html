@@ -24,13 +24,13 @@
 
   <div class="wrapper" ng-class="{'wrapperBig': cardShotBigWithIcons == true}">
 
-    <div class="card" ng-repeat="shot in listOfShots">
+    <div class="card" ng-repeat="shot in listOfShots" data-toggle="modal" data-target=".bs-example-modal-lg">
 
       <div class="cardShot" ng-class="{'cardShotBigWithIcons': cardShotBigWithIcons == true,
       'cardShotLittleOffIcons': cardShotLittleOffIcons == true,
       'cardShotOffIcons': cardShotOffIcons == true}">
 
-        <div class="imageContainerShot">
+        <div class="imageContainerShot" ng-click="sendToModal(shot)">
 
           <a href="#">
 
@@ -105,6 +105,118 @@
           {{shot.user.type}}
 
         </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+
+  <div class="modal-dialog modal-lg" role="document">
+
+    <div class="modal-content">
+
+      <div class="headerModal">
+
+        <img src="{{shotOfContentModal.user.avatar_url}}" alt="">
+
+        <div class="nameTeamAndUser">
+          <h3>{{shotOfContentModal.title}}</h3>
+          <p>by <a href="#">{{shotOfContentModal.user.name}}</a> on {{shotOfContentModal.updated_at | date:'mediumDate'}}</p>
+        </div>
+
+      </div>
+
+      <div class="contentShotModal row">
+
+        <div class="col-md-7">
+
+          <div class="cardImageModal">
+
+            <img src="{{shotOfContentModal.images.hidpi}}" alt="">
+
+          </div>
+
+          <div class="descriptionModal">
+
+            <p ng-bind-html="deliberatelyTrustDangerousSnippet(shotOfContentModal.description)"></p>
+
+          </div>
+
+          <div class="commentsModal">
+
+            <h4>{{commentsModal.length}} Responses</h4>
+
+            <div class="usersComment" ng-repeat="comment in commentsModal">
+
+              <div>
+                <img src="{{comment.user.avatar_url}}" alt="">
+                <div id="userComment">
+                  <p>{{comment.user.name}}</p>
+                  <p ng-bind-html="deliberatelyTrustDangerousSnippet(comment.body)"></p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-5">
+
+          <div class="likeModal itensRight">
+
+            <a href="#">Like?</a>
+
+            <span>{{shotOfContentModal.likes_count}} likes</span>
+
+          </div>
+
+          <div class="shareModal itensRight">
+
+            <a href="#">Share</a>
+
+            <span>{{shotOfContentModal.views_count}} views</span>
+
+          </div>
+
+          <div class="bucketModal itensRight">
+
+            <a href="#">Share</a>
+
+            <span>{{shotOfContentModal.buckets_count}} buckets</span>
+
+          </div>
+
+          <div class="moreFromAuthor">
+
+            <div>
+              <h4>More from {{shotOfContentModal.user.name}}</h4>
+              <img src="img/icons/plus.png" alt="Mais itens">
+            </div>
+
+            <div id="moreCards">
+
+            </div>
+
+          </div>
+
+          <div class="tagsModal">
+
+            <h4>Tags</h4>
+
+            <div>
+              <a href="#" ng-repeat="tag in shotOfContentModal.tags">{{tag}} </a>
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
