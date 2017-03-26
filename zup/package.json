@@ -1,0 +1,17 @@
+{
+  "name": "myshots",
+  "version": "1.0.0",
+  "description": "Aplicação para teste.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matheus Meira",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3",
+    "jquery": "^3.2.1"
+  }
+}

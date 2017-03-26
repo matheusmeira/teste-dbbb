@@ -1,0 +1,99 @@
+<div class="secondToolbar">
+
+  <div class="iconChangeGrid">
+
+  </div>
+
+</div>
+
+<div class="container-fluid contentViewHome">
+  <button type="button" name="button" ng-click="sizeCard(2)">btn</button>
+  <div class="wrapper" ng-class="{'wrapperBig': cardShotBigWithIcons == true}">
+
+    <div class="card" ng-repeat="shot in listOfShots">
+
+      <div class="cardShot" ng-class="{'cardShotBigWithIcons': cardShotBigWithIcons == true, 'cardShotOffIcons': cardShotOffIcons == true}">
+
+        <div class="imageContainerShot">
+
+          <a href="#">
+
+            <div class="contentImg">
+
+              <strong>{{shot.title}}</strong><br>
+
+              <p ng-bind-html="deliberatelyTrustDangerousSnippet(shot.description)"></p>
+
+              <span>{{shot.updated_at | date:'mediumDate'}}</span>
+
+            </div>
+
+          </a>
+
+          <a href="#">
+
+            <img src="{{shot.images.normal}}" alt="">
+
+          </a>
+
+        </div>
+
+        <div class="optionsRight">
+
+          <ul>
+
+            <li class="like">
+              <a></a>
+              <a href="#">{{shot.likes_count}}</a>
+            </li>
+
+            <li class="comment">
+              <span>{{shot.comments_count}}</span>
+            </li>
+
+            <li class="visible">
+              <span>{{shot.views_count}}</span>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div ng-if="shot.team != null" class="nameOfAutor">
+
+        <a href="#" class="author" style="background-image: url({{shot.team.avatar_url}})">
+
+          {{shot.team.name}}
+
+        </a>
+
+        <a href="#" class="typeOfAuthor">
+
+          {{shot.team.type}}
+
+        </a>
+
+      </div>
+
+      <div ng-if="shot.team == null" class="nameOfAutor">
+
+        <a href="#" class="author" style="background-image: url({{shot.user.avatar_url}})">
+
+          {{shot.user.name}}
+
+        </a>
+
+        <a href="#" class="typeOfAuthor">
+
+          {{shot.user.type}}
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
