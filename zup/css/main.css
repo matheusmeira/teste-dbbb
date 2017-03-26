@@ -278,8 +278,11 @@ body {
 }
 
 .modal-content {
-  padding: 40px 70px;
   background-color: #F4F4F4;
+}
+
+.paddingAll {
+  padding: 40px 70px;
 }
 
 .contentShotModal {
@@ -421,4 +424,10 @@ body {
 
 #userComment p {
   margin: 0;
+}
+
+#userComment p:nth-child(3) {
+  font-size: 10px;
+  color: #777;
+  margin-top: 5px;
 }

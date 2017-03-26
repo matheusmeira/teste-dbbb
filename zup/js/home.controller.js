@@ -1,6 +1,6 @@
 app.controller('homeCtrl', function($scope, $rootScope, $sce) {
 
-  $rootScope.reqWithToken('/shots', null, 'GET', function(success) {
+  $rootScope.reqWithToken('/shots?page=2&per_page=100', null, 'GET', function(success) {
 
     $scope.listOfShots = success.data;
 

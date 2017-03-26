@@ -120,98 +120,109 @@
 
     <div class="modal-content">
 
-      <div class="headerModal">
-
-        <img src="{{shotOfContentModal.user.avatar_url}}" alt="">
-
-        <div class="nameTeamAndUser">
-          <h3>{{shotOfContentModal.title}}</h3>
-          <p>by <a href="#">{{shotOfContentModal.user.name}}</a> on {{shotOfContentModal.updated_at | date:'mediumDate'}}</p>
-        </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
       </div>
 
-      <div class="contentShotModal row">
+      <div class="paddingAll">
 
-        <div class="col-md-7">
+        <div class="headerModal">
 
-          <div class="cardImageModal">
+          <img src="{{shotOfContentModal.user.avatar_url}}" alt="">
 
-            <img src="{{shotOfContentModal.images.hidpi}}" alt="">
-
+          <div class="nameTeamAndUser">
+            <h3>{{shotOfContentModal.title}}</h3>
+            <p>by <a href="#">{{shotOfContentModal.user.name}}</a> on {{shotOfContentModal.updated_at | date:'mediumDate'}}</p>
           </div>
 
-          <div class="descriptionModal">
+        </div>
 
-            <p ng-bind-html="deliberatelyTrustDangerousSnippet(shotOfContentModal.description)"></p>
+        <div class="contentShotModal row">
 
-          </div>
+          <div class="col-md-7">
 
-          <div class="commentsModal">
+            <div class="cardImageModal">
 
-            <h4>{{commentsModal.length}} Responses</h4>
+              <img src="{{shotOfContentModal.images.hidpi}}" alt="">
 
-            <div class="usersComment" ng-repeat="comment in commentsModal">
+            </div>
 
-              <div>
-                <img src="{{comment.user.avatar_url}}" alt="">
-                <div id="userComment">
-                  <p>{{comment.user.name}}</p>
-                  <p ng-bind-html="deliberatelyTrustDangerousSnippet(comment.body)"></p>
+            <div class="descriptionModal">
+
+              <p ng-bind-html="deliberatelyTrustDangerousSnippet(shotOfContentModal.description)"></p>
+
+            </div>
+
+            <div class="commentsModal">
+
+              <h4>{{commentsModal.length}} Responses</h4>
+
+              <div class="usersComment" ng-repeat="comment in commentsModal">
+
+                <div>
+                  <img src="{{comment.user.avatar_url}}" alt="">
+                  <div id="userComment">
+                    <p>{{comment.user.name}}</p>
+                    <p ng-bind-html="deliberatelyTrustDangerousSnippet(comment.body)"></p>
+                    <p>{{comment.updated_at | date:'mediumDate'}}</p>
+                  </div>
+
                 </div>
+
               </div>
 
             </div>
 
           </div>
 
-        </div>
+          <div class="col-md-5">
 
-        <div class="col-md-5">
+            <div class="likeModal itensRight">
 
-          <div class="likeModal itensRight">
+              <a href="#">Like?</a>
 
-            <a href="#">Like?</a>
-
-            <span>{{shotOfContentModal.likes_count}} likes</span>
-
-          </div>
-
-          <div class="shareModal itensRight">
-
-            <a href="#">Share</a>
-
-            <span>{{shotOfContentModal.views_count}} views</span>
-
-          </div>
-
-          <div class="bucketModal itensRight">
-
-            <a href="#">Share</a>
-
-            <span>{{shotOfContentModal.buckets_count}} buckets</span>
-
-          </div>
-
-          <div class="moreFromAuthor">
-
-            <div>
-              <h4>More from {{shotOfContentModal.user.name}}</h4>
-              <img src="img/icons/plus.png" alt="Mais itens">
-            </div>
-
-            <div id="moreCards">
+              <span>{{shotOfContentModal.likes_count}} likes</span>
 
             </div>
 
-          </div>
+            <div class="shareModal itensRight">
 
-          <div class="tagsModal">
+              <a href="#">Share</a>
 
-            <h4>Tags</h4>
+              <span>{{shotOfContentModal.views_count}} views</span>
 
-            <div>
-              <a href="#" ng-repeat="tag in shotOfContentModal.tags">{{tag}} </a>
+            </div>
+
+            <div class="bucketModal itensRight">
+
+              <a href="#">Share</a>
+
+              <span>{{shotOfContentModal.buckets_count}} buckets</span>
+
+            </div>
+
+            <div class="moreFromAuthor">
+
+              <div>
+                <h4>More from {{shotOfContentModal.user.name}}</h4>
+                <img src="img/icons/plus.png" alt="Mais itens">
+              </div>
+
+              <div id="moreCards">
+
+              </div>
+
+            </div>
+
+            <div class="tagsModal">
+
+              <h4>Tags</h4>
+
+              <div>
+                <a href="#" ng-repeat="tag in shotOfContentModal.tags">{{tag}} </a>
+              </div>
+
             </div>
 
           </div>
