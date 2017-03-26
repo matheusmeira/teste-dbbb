@@ -2,17 +2,33 @@
 
   <div class="iconChangeGrid">
 
+    <ul class="nav navbar-nav navbar-right btnGridOptions">
+      <li class="dropdown">
+        <span class="dropdown-toggle" data-toggle="dropdown">
+          <img src="img/icons/gridOption.png" alt="Opções de layout">
+        </span>
+        <ul class="dropdown-menu">
+          <li><img ng-click="sizeCard(1)" src="img/icons/gridOption.png" alt=""></li>
+          <li><img ng-click="sizeCard(2)" src="img/icons/gridOption.png" alt=""></li>
+          <li><img ng-click="sizeCard(3)" src="img/icons/gridOption.png" alt=""></li>
+          <li><img ng-click="sizeCard(4)" src="img/icons/gridOption.png" alt=""></li>
+        </ul>
+      </li>
+    </ul>
+
   </div>
 
 </div>
 
 <div class="container-fluid contentViewHome">
-  <button type="button" name="button" ng-click="sizeCard(2)">btn</button>
+
   <div class="wrapper" ng-class="{'wrapperBig': cardShotBigWithIcons == true}">
 
     <div class="card" ng-repeat="shot in listOfShots">
 
-      <div class="cardShot" ng-class="{'cardShotBigWithIcons': cardShotBigWithIcons == true, 'cardShotOffIcons': cardShotOffIcons == true}">
+      <div class="cardShot" ng-class="{'cardShotBigWithIcons': cardShotBigWithIcons == true,
+      'cardShotLittleOffIcons': cardShotLittleOffIcons == true,
+      'cardShotOffIcons': cardShotOffIcons == true}">
 
         <div class="imageContainerShot">
 
@@ -60,7 +76,7 @@
 
       </div>
 
-      <div ng-if="shot.team != null" class="nameOfAutor">
+      <div ng-if="shot.team != null && cardShotLittleOffIcons == false && cardShotOffIcons == false" class="nameOfAutor">
 
         <a href="#" class="author" style="background-image: url({{shot.team.avatar_url}})">
 
@@ -76,7 +92,7 @@
 
       </div>
 
-      <div ng-if="shot.team == null" class="nameOfAutor">
+      <div ng-if="shot.team == null && cardShotLittleOffIcons == false && cardShotOffIcons == false" class="nameOfAutor">
 
         <a href="#" class="author" style="background-image: url({{shot.user.avatar_url}})">
 
