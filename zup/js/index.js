@@ -1,10 +1,10 @@
 var app = angular.module('App', ['ngRoute', 'ngSanitize']);
 
-app.config(function($routeProvider){
+app.config(function( $routeProvider){
+
 	$routeProvider
-	.when('/', {
-		templateUrl: 'views/home.html',
-		controller: 'homeCtrl'
+	.when("/", {
+		templateUrl: 'views/home.html'
 	})
 
 });
@@ -16,7 +16,7 @@ function ($rootScope, $http, $window, $filter) {
 
    $rootScope.reqWithToken = function(service, params, type, success, error){
     $http({
-      url: $rootScope.reqApiURL + service,
+      url: service,
       method: type,
       data: params,
         headers: { 'Authorization': 'Bearer c593326bb298d8049bc56ed0e115cc21c98b70f7144511821fd26b7058aab877'}
@@ -29,3 +29,17 @@ function ($rootScope, $http, $window, $filter) {
 
 
 }]);
+
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});

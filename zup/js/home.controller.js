@@ -1,16 +1,86 @@
-app.controller('homeCtrl', function($scope, $rootScope, $sce) {
+app.controller('homeCtrl', function($scope, $rootScope, $sce, $routeParams) {
 
-  $rootScope.reqWithToken('/shots?page=2&per_page=100', null, 'GET', function(success) {
+  $scope.numberPage = 1;
+  $scope.cardShotBigWithIcons = false;
+  $scope.cardShotLittleOffIcons = false;
+  $scope.cardShotOffIcons = false;
 
-    $scope.listOfShots = success.data;
+  // $scope.callbackResponse = (document.URL).split("#")[1];
+  // console.log($scope.callbackResponse);
+  // var responseParameters = (callbackResponse).split("&");
+  // var parameterMap = [];
+  // for(var i = 0; i < responseParameters.length; i++) {
+  //     parameterMap[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+  // }
 
-    console.log(success);
+  $scope.addSearchInShots = function() {
 
-  }, function(err) {
+    $scope.listOfShots.map(function(el) {
 
-    console.log(err);
+      el.search = `${el.title}`;
 
-  });
+      return el;
+    });
+
+  }
+
+  $scope.login = function() {
+    window.location.href = "https://dribbble.com/oauth/authorize?client_id=" + "4dd5c04b48cc7c5b0fefaaa45678fb340802d1d667b879ee944396565effa622";
+  }
+
+
+
+  $scope.search = function(textSearch) {
+
+    $scope.numberPage = 1;
+
+    $scope.listOfShots = $scope.listOfShots.filter(function(el) {
+
+      if (el.search.indexOf(textSearch) != -1) {
+        return el;
+      }
+
+    });
+
+  }
+
+  $scope.renderSearch = function(textSearch) {
+
+    if (textSearch == null || textSearch == '') {
+      return;
+    } else {
+      $scope.search(textSearch);
+    }
+
+  }
+
+
+
+
+  $scope.moreShots = function() {
+
+    $scope.numberPage++;
+
+    $rootScope.reqWithToken('https://api.dribbble.com/v1/shots?page='+$scope.numberPage+'&per_page=30', null, 'GET', function(success) {
+
+      $scope.aux = success.data;
+
+      for (var i = 0; i < $scope.aux.length; i++) {
+
+        $scope.listOfShots.push($scope.aux[i]);
+      }
+
+      $scope.addSearchInShots();
+
+      console.log(success);
+
+    }, function(err) {
+
+      console.log(err);
+
+    });
+
+  }
 
   $scope.sizeCard = function(index) {
 
@@ -50,7 +120,7 @@ app.controller('homeCtrl', function($scope, $rootScope, $sce) {
 
     $rootScope.shotOfContentModal = index;
 
-    $rootScope.reqWithToken('/shots/'+$rootScope.shotOfContentModal.id+'/comments', null, 'GET', function(success) {
+    $rootScope.reqWithToken('https://api.dribbble.com/v1/shots/'+$rootScope.shotOfContentModal.id+'/comments', null, 'GET', function(success) {
 
       $rootScope.commentsModal = success.data;
 
@@ -64,7 +134,26 @@ app.controller('homeCtrl', function($scope, $rootScope, $sce) {
 
   }
 
+  $scope.init = function() {
+    $rootScope.reqWithToken('https://api.dribbble.com/v1/shots?page=1&per_page=30', null, 'GET', function(success) {
+
+      $scope.listOfShots = success.data;
+
+      $scope.addSearchInShots();
+
+      console.log(success);
+
+    }, function(err) {
+
+      console.log(err);
+
+    });
+  }
+
+  $scope.init();
+
   $('ul.nav li.dropdown').hover(function() {
+    alert("oi")
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
   }, function() {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);

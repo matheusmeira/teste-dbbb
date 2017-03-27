@@ -2,27 +2,59 @@ body {
   background-color: #F4F4F4;
 }
 
+.input-group  {
+  float: right;
+  padding-top: 7px;
+  padding-right: 10px;
+}
+
+.firstToolbar div:first-child {
+  display: inline-block;
+  color: #FFF;
+  margin-top: 13px;
+  margin-left: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.iconChangeGrid{
+  float: right;
+}
+
+.iconChangeGrid ul {
+  right: 0;
+  left: inherit;
+}
+
+.dropdown-menu li img {
+  width: 20px;
+}
+
 .navbar-right {
   margin: 0;
 }
+
+.firstToolbar {
+  width: 100%;
+  height: 50px;
+  background-color: #333333;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.firstToolbar a {
+  color: #FFF;
+}
+
+.firstToolbar .nav li a:hover{
+  background-color: #333333;
+}
+
 
 .secondToolbar {
   width: 100%;
   height: 50px;
   background-color: #FAFAFA;
   border-bottom: 1px solid #E5E5E5;
-}
-
-.btnGridOptions {
-  height: 50px;
-  width: 50px;
-
-}
-
-.btnGridOptions img {
-  height: 30px;
-  width: 30px;
-  margin-top: 10px;
 }
 
 .dropdown-menu {
